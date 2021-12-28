@@ -1,0 +1,13 @@
+#!/usr/bin/with-contenv bash
+
+# Make some local folders
+mkdir -p \
+	/config/www/ \
+	/var/www/localhost/ldap-user-manager \
+	/config/log/ldap-user-manager
+
+# Install ldap-user-manager if necessary
+cp -a /ldap-user-manager/www/* /var/www/localhost/ldap-user-manager
+
+echo "Setting permissions"
+chown -R abc:abc /config
