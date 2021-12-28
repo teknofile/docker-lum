@@ -8,7 +8,12 @@ pipeline {
     LUM_VERSION="v1.7"
   }
 
-  stages {
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '10'))
+    pipelineTriggers([cron('H 0 * * 0')])
+  }
+  
+   stages {
     stage('Setup Environment') {
       steps {
         script {
@@ -45,10 +50,12 @@ pipeline {
               --pull \
               --builder tkf-builder-${CONTAINER_NAME}-${GITHASH_SHORT} \
               --platform linux/arm64,linux/amd64 \
+              --build-arg LUM_VERSION=${LUM_VERSION} \
               -t teknofile/${CONTAINER_NAME} \
               -t teknofile/${CONTAINER_NAME}:latest \
               -t teknofile/${CONTAINER_NAME}:${GITHASH_LONG} \
               -t teknofile/${CONTAINER_NAME}:${GITHASH_SHORT} \
+              -t teknofile/${CONTAINER_NAME}:${LUM_VERSION} \
               . \
               --push
 
