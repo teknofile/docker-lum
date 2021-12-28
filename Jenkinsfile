@@ -10,7 +10,7 @@ pipeline {
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '10'))
-    pipelineTriggers([cron('H 0 * * 0')])
+    //pipelineTriggers([cron('H 0 * * 0')])
   }
   
    stages {
