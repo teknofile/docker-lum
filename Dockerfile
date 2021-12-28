@@ -1,6 +1,6 @@
 FROM teknofile/tkf-docker-base-alpine-nginx:3.15
 
-ARG LUM_VERSION="v1.7"
+ARG LUM_VERSION
 
 RUN apk update
 RUN apk add \

@@ -4,6 +4,8 @@ pipeline {
   environment {
     UPSTREAM_NAME = 'ldap-user-manager'
     CONTAINER_NAME = 'tkf-docker-lum'
+
+    LUM_VERSION="v1.7"
   }
 
   stages {
