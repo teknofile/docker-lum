@@ -31,7 +31,8 @@ pipeline {
       steps {
         echo "Running on node: ${NODE_NAME}"
         deleteDir()
-        git([url: 'https://github.com/teknofile/ldap-user-manager.git', branch: env.BRANCH_NAME, credentialsId: 'TKFBuildBot'])
+        //git([url: 'https://github.com/teknofile/ldap-user-manager.git', branch: env.BRANCH_NAME, credentialsId: 'TKFBuildBot'])
+        git([url: env.GIT_URL, branch: env.BRANCH_NAME, credentialsId: 'TKFBuildBot'])
         withDockerRegistry(credentialsId: 'teknofile-dockerhub', url: "https://index.docker.io/v1/") {
           sh '''
             docker buildx create --name tkf-builder-${CONTAINER_NAME}-${GITHASH_SHORT} --use
